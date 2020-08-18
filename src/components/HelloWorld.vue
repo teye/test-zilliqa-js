@@ -28,18 +28,32 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <h3>Address</h3>
+    <p><strong>Account</strong>: {{address}}</p>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Zilliqa } from '@zilliqa-js/zilliqa'
+import { toBech32Address, getAddressFromPrivateKey } from '@zilliqa-js/crypto'
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-  created() {
+  @Prop() private address!: string;
+  created () {
     const zilliqa = new Zilliqa('https://dev-api.zilliqa.com')
+
+    // Populate the wallet with an account
+    const privateKey = '3375F915F3F9AE35E6B301B7670F53AD1A5BE15D8221EC7FD5E503F21D3450C8'
+
+    zilliqa.wallet.addByPrivateKey(privateKey)
+
+    const address = getAddressFromPrivateKey(privateKey)
+    this.address = address
+    console.log(`My account address is: ${address}`)
+    console.log(`My account bech32 address is: ${toBech32Address(address)}`)
   }
 }
 </script>
