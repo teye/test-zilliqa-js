@@ -33,10 +33,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Zilliqa } from '@zilliqa-js/zilliqa'
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  created() {
+    const zilliqa = new Zilliqa('https://dev-api.zilliqa.com')
+  }
 }
 </script>
 
