@@ -1,5 +1,8 @@
 # test-zilliqa-js
 
+## Project Info
+A simple demo project using `zilliqa-js 1.0.0` to fetch account address.
+
 ## Project setup
 ```
 npm install
@@ -25,7 +28,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### How this project is created
 
-Tested **Node 10.18.0**
+Tested **Node 10.22.0**
 ```
 vue create test-zilliqa-js
 
